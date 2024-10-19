@@ -1,0 +1,50 @@
+{% extends "model-page.html" %}
+{% block content %}
+    <div>
+        <h2>Cadastro de Tarefas</h2>
+
+        <form action="submit" method="POST">
+            {% csrf_token %}
+            <input type="number" name="id_tarefa" value="{{ tarefa.id }}" hidden>
+
+            <label for="descricao">Descricao</label>
+            <input type="text" id="descricao" name="descricao" value="{{ tarefa.descricao }}" required>
+
+            <label for="setor">Setor</label>
+            <input type="text" id="setor" name="setor" value="{{ tarefa.setor }}" required>
+
+            <label for="usuario">Usuário</label>
+            <select id="usuario" name="usuario" required>
+                <option value="{{ tarefa.usuario.id }}">{{ tarefa.usuario.nome }}</option>
+                {% for usuario in usuarios %}
+                    <option value="{{ usuario.id }}">{{ usuario.nome }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="prioridade">Prioridade</label>
+            <select id="prioridade" name="prioridade" required>
+                <option value="" disabled {% if tarefa.id %} selected {% endif %}>Selecione a prioridade</option>
+                {% for key, prioridade in prioridades.items %}
+                    <option value="{{ key }}" {% if key == tarefa.prioridade %} selected {% endif %}>{{ prioridade }}</option>
+                {% endfor %}
+            </select>
+
+            <div>
+                <button type="submit">Salvar</button>
+                <a href="/">
+                    <button type="button">Cancelar</button>
+                </a>
+            </div>
+        </form>
+        
+    {% if messages %}
+    <div>
+        <ul>
+            {% for message in messages %}
+                <li> {{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,180 @@
+/* Reset basic styles */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, button, select, a, div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body style */
+body {
+    background-color: #f8f9fa; /* Light background */
+    color: #333; /* Dark text for readability */
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Navbar styling */
+nav {
+    background-color: #343a40; /* Dark gray for a modern look */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: #ffffff; /* White text for contrast */
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+nav a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 15px;
+}
+
+/* Navbar button styles */
+nav button {
+    background-color: #343a40; /* Same color as the navbar */
+    border: none;
+    color: #ffffff; /* White text */
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+    background-color: #495057; /* Slightly lighter gray on hover */
+}
+
+/* Footer styling */
+footer {
+    background-color: #343a40; /* Darker shade */
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Container and content styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+h3, h4 {
+    color: #333; /* Dark text for headings */
+    margin-bottom: 10px;
+}
+
+div {
+    margin-bottom: 20px;
+}
+
+/* Button styles */
+button {
+    background-color: #6c757d; /* Muted gray for primary buttons */
+    color: #ffffff; /* White text */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+}
+
+button[type="button"] {
+    background-color: #adb5bd; /* Lighter gray for cancel buttons */
+}
+
+button[type="button"]:hover {
+    background-color: #868e96; /* Darker gray on hover */
+}
+
+/* Form styles */
+form {
+    background-color: #ffffff; /* White background for forms */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="number"], select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+/* Quick action buttons */
+div > a > button {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* Message styles */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    background-color: #837d7e; /* Light red for error messages */
+    color: #4c4a53; /* Dark red text */
+    padding: 10px;
+    border: 1px solid #837d7e;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav button {
+        font-size: 16px;
+    }
+}
+
+nav button:focus,
+nav button:active {
+    outline: none; /* Remove default outline */
+    background-color: #495057; /* Use the same hover color */
+}

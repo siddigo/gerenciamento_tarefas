@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% include "model-header.html" %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/">Gerenciamento de Tarefas</a>
+        <div id="navbarNav">
+            <ul>
+                <li>
+                    <a href="/usuario/">Cadastro de Usuários</a>
+                </li>
+                <li>
+                    <a href="/tarefa/">Cadastro de Tarefas</a>
+                </li>
+                <li>
+                    <a href="/gerenciamento/">Gerenciar Tarefas</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+        {% block content %} {% endblock %}
+    {% include "model-footer.html" %}
+</body>
+</html>

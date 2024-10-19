@@ -1,0 +1,156 @@
+{% extends "model-page.html" %}
+{% block content %}
+<div class="kanban-container">
+    <div class="kanban-column" id="a-fazer">
+        <h2>A Fazer</h2>
+        {% for tarefa in tarefas_a_fazer %}
+        <div class="kanban-card">
+            <h3>{{ tarefa.descricao }}</h3>
+            <p><strong>Setor:</strong> {{ tarefa.setor }}</p>
+            <p><strong>Prioridade:</strong> {{ tarefa.get_prioridade_display }}</p>
+            <p><strong>Vinculado a:</strong> {{ tarefa.usuario.nome }}</p>
+            <div class="kanban-buttons">
+                <a href="/tarefa/?id={{tarefa.id}}">
+                    <button type="button">Editar</button>
+                </a>
+                <a href="/excluir_tarefa/{{tarefa.id}}/">
+                    <button type="button">Excluir</button>
+                </a>
+                <!-- Formulário para alteração de status -->
+                <form action="/mudar_status/{{tarefa.id }}/" method="POST">
+                    {% csrf_token %}
+                    <select id="status" name="status" required onchange="this.form.submit()">
+                        <option value="{{ tarefa.status }}">{{ tarefa.get_status_display }}</option>
+                        {% for key, status in statusList.items %}
+                            <option value="{{ key }}">{{ status }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="kanban-column" id="fazendo">
+        <h2>Fazendo</h2>
+        {% for tarefa in tarefas_fazendo %}
+        <div class="kanban-card">
+            <h3>{{ tarefa.descricao }}</h3>
+            <p><strong>Setor:</strong> {{ tarefa.setor }}</p>
+            <p><strong>Prioridade:</strong> {{ tarefa.get_prioridade_display }}</p>
+            <p><strong>Vinculado a:</strong> {{ tarefa.usuario.nome }}</p>
+            <div class="kanban-buttons">
+                <a href="/tarefa/?id={{tarefa.id}}">
+                    <button type="button">Editar</button>
+                </a>
+                <a href="/excluir_tarefa/{{tarefa.id}}/">
+                    <button type="button">Excluir</button>
+                </a>
+                <!-- Formulário para alteração de status -->
+                <form action="/mudar_status/{{tarefa.id }}/" method="POST">
+                    {% csrf_token %}
+                    <select id="status" name="status" required onchange="this.form.submit()">
+                        <option value="{{ tarefa.status }}">{{ tarefa.get_status_display }}</option>
+                        {% for key, status in statusList.items %}
+                            <option value="{{ key }}">{{ status }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="kanban-column" id="feito">
+        <h2>Feito</h2>
+        {% for tarefa in tarefas_feito %}
+        <div class="kanban-card">
+            <h3>{{ tarefa.descricao }}</h3>
+            <p><strong>Setor:</strong> {{ tarefa.setor }}</p>
+            <p><strong>Prioridade:</strong> {{ tarefa.get_prioridade_display }}</p>
+            <p><strong>Vinculado a:</strong> {{ tarefa.usuario.nome }}</p>
+            <div class="kanban-buttons">
+                <a href="/tarefa/?id={{tarefa.id}}">
+                    <button type="button">Editar</button>
+                </a>
+                <a href="/excluir_tarefa/{{tarefa.id}}/">
+                    <button type="button">Excluir</button>
+                </a>
+
+                <!-- Formulário para alteração de status -->
+                <form action="/mudar_status/{{tarefa.id }}/" method="POST">
+                    {% csrf_token %}
+                    <select id="status" name="status" required onchange="this.form.submit()">
+                        <option value="{{ tarefa.status }}">{{ tarefa.get_status_display }}</option>
+                        {% for key, status in statusList.items %}
+                            <option value="{{ key }}">{{ status }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% if messages %}
+<div>
+    <ul>
+        {% for message in messages %}
+            <li> {{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<style>
+    .kanban-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    .kanban-column {
+        background-color: #e9ecef; /* Light gray for the column */
+        border-radius: 8px;
+        padding: 15px;
+        width: 30%;
+        min-height: 400px; /* Ensure columns have some height */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .kanban-card {
+        background-color: #ffffff; /* White for cards */
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .kanban-buttons {
+        margin-top: 10px;
+    }
+
+    button {
+        background-color: #6c757d; /* Gray */
+        color: #ffffff; /* White text */
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #5a6268; /* Darker gray on hover */
+    }
+
+    select {
+        margin-left: 10px;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+        font-size: 14px;
+    }
+</style>
+
+{% endblock %}
